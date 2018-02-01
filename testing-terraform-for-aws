@@ -1,0 +1,109 @@
+1. make directory to create tf file
+$ mkdir terraform; cd terraform
+2. vim example.tf
+
+provider "aws" {
+        access_key = "Amazon_access_id"
+        secret_key = "Amazon_access_key"
+        region = "us-east-1"
+}
+
+resource "aws_instance" "webserver" {
+        ami = "ami-97785bed"
+        instance_type = "t2.micro"
+}
+
+3. we have to initialize terform to download aws plugin 
+$ terraform init
+
+4. execute the plane to see the what change will happened on aws when we apply terrform example file and see the output.
+
+govinda@govinda:~/backup2/terraform$ terraform plan 
+Refreshing Terraform state in-memory prior to plan...
+The refreshed state will be used to calculate this plan, but will not be
+persisted to local or remote state storage.
+
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  + aws_instance.webserver
+      id:                           <computed>
+      ami:                          "ami-97785bed"
+      associate_public_ip_address:  <computed>
+      availability_zone:            <computed>
+      ebs_block_device.#:           <computed>
+      ephemeral_block_device.#:     <computed>
+      instance_state:               <computed>
+      instance_type:                "t2.micro"
+      ipv6_address_count:           <computed>
+      ipv6_addresses.#:             <computed>
+      key_name:                     <computed>
+      network_interface.#:          <computed>
+      network_interface_id:         <computed>
+      placement_group:              <computed>
+      primary_network_interface_id: <computed>
+      private_dns:                  <computed>
+      private_ip:                   <computed>
+      public_dns:                   <computed>
+      public_ip:                    <computed>
+      root_block_device.#:          <computed>
+      security_groups.#:            <computed>
+      source_dest_check:            "true"
+      subnet_id:                    <computed>
+      tenancy:                      <computed>
+      volume_tags.%:                <computed>
+      vpc_security_group_ids.#:     <computed>
+
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+------------------------------------------------------------------------
+
+Note: You didn't specify an "-out" parameter to save this plan, so Terraform
+can't guarantee that exactly these actions will be performed if
+"terraform apply" is subsequently run.
+
+5. Finally run terraform -version command we will see output like this
+
+$ terraform -version
+Terraform v0.11.2
++ provider.aws v1.8.0
+
+6. it proofs that we installed teraform succesfully.
+7. Applying terraform
+$ Teraform apply 
+
+---------
+-------
+aws_instance.webserver: Still creating... (10s elapsed)
+aws_instance.webserver: Still creating... (20s elapsed)
+aws_instance.webserver: Creation complete after 23s (ID: i-08e1c37a870d0e305)
+
+8. teraform show command show what is going on 
+$ terraform show
+aws_instance.webserver:
+  id = i-08e1c37a870d0e305
+  ami = ami-97785bed
+  associate_public_ip_address = true
+  availability_zone = us-east-1c
+  disable_api_termination = false
+-------------------
+  tags.% = 0
+  tenancy = default
+  volume_tags.% = 0
+  vpc_security_group_ids.# = 0
+
+9. 
+
+
+
+
+
+
+

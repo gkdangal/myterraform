@@ -1,0 +1,36 @@
+1. Download terraform 
+$ mkdir terraform; cd terraform
+----------------------
+2. Download terraform
+govinda@govinda:~/backup2/terraform$ wget https://releases.hashicorp.com/terraform/0.11.2/terraform_0.11.2_linux_amd64.zip
+
+3. Unzip terraform
+govinda@govinda:~/backup2/terraform$ unzip terraform_0.11.2_linux_amd64.zip
+4. move terraform to /usr/local/bin/
+$  mv terraform /usr/local/bin/
+
+5. Step 4 we can do another way by specifying path on ~/.profile
+$ vim ~/.profile
+## Add this line at the button of files
+
+export PATH=$path:/location of file
+save and exit from terminal
+
+reopen the terminal
+
+6. Chack terraform is installed correctly or not you get this kind of result
+$ terraform -version
+Terraform v0.11.2
+
+7. your terraform is installed correclty 
+
+
+ 
+
+ 
+ 
+
+
+
+
+
